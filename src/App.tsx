@@ -1,27 +1,20 @@
-import React, { Fragment } from 'react';
-import { RouterProvider } from 'react-router-dom';
+import * as React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import router from './router';
-import SearchBar from './components/search-bar/SearchBar';
+import NotFoundPage from './pages/not-found-page/NotFoundPage';
+import Home from './pages/home-page/Home';
+import About from './pages/about-page/About';
+import Layout from './components/layout/Layout';
+import { PATH } from './constants/global';
 
-const Header = () => (
-  <header>
-    Header{' '}
-    <SearchBar
-      onSearch={() => {
-        console.log('search');
-      }}
-    ></SearchBar>
-  </header>
-);
-
-const App = () => {
+export default function App() {
   return (
-    <Fragment>
-      <Header />
-      <RouterProvider router={router} />
-    </Fragment>
+    <Routes>
+      <Route path={PATH.HOME} element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path={PATH.ABOUT} element={<About />} />
+        <Route path={PATH.NOT_FOUND} element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
-};
-
-export default App;
+}

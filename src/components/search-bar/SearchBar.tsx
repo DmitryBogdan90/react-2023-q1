@@ -1,5 +1,7 @@
 import React, { Component, ChangeEvent, FormEvent } from 'react';
 
+import './SearchBar.css';
+
 interface SearchBarProps {
   onSearch: (query: string) => void;
 }
@@ -25,11 +27,12 @@ class SearchBar extends Component<SearchBarProps, SearchBarState> {
   handleFormSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     this.props.onSearch(this.state.query);
+    this.setState({ query: '' });
   }
 
   render() {
     return (
-      <form onSubmit={this.handleFormSubmit}>
+      <form className="search-bar" onSubmit={this.handleFormSubmit}>
         <input
           type="text"
           placeholder="Search"
