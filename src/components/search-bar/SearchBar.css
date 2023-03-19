@@ -1,0 +1,15 @@
+.search-bar {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.search-bar input {
+  border: black 1px solid;
+  margin: 0 5px 0;
+}
+
+.search-bar button {
+  width: 50px;
+  border: 1px solid black;
+  padding: 0 15px;
+}

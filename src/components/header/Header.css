@@ -1,0 +1,21 @@
+.header {
+  border-bottom: 1px black solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.header__navigation {
+  margin: 0 0 0 5px;
+}
+
+.header__navigation ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.header__navigation ul li {
+  margin: 0 10px;
+}
