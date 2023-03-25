@@ -4,7 +4,7 @@ import './Card.css';
 
 type CardProps = {
   title: string;
-  image: string;
+  image?: string;
   description: string;
 };
 
