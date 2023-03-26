@@ -24,46 +24,34 @@ class FormsPage extends Component<{}, FormState> {
   };
 
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (this.state.isShowData) {
-      this.setState({ isShowData: false });
-    }
+    this.checkShowDataStatus();
     this.setState({ name: event.target.value });
   };
 
   handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (this.state.isShowData) {
-      this.setState({ isShowData: false });
-    }
+    this.checkShowDataStatus();
     this.setState({ date: event.target.value });
   };
 
   handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    if (this.state.isShowData) {
-      this.setState({ isShowData: false });
-    }
+    this.checkShowDataStatus();
     this.setState({ selectedOption: event.target.value });
   };
 
   handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (this.state.isShowData) {
-      this.setState({ isShowData: false });
-    }
+    this.checkShowDataStatus();
     this.setState({ isChecked: event.target.checked });
   };
 
   handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (this.state.isShowData) {
-      this.setState({ isShowData: false });
-    }
+    this.checkShowDataStatus();
     if (event.target.files !== null && event.target.files.length > 0) {
       this.setState({ selectedFile: event.target.files[0] });
     }
   };
 
   handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (this.state.isShowData) {
-      this.setState({ isShowData: false });
-    }
+    this.checkShowDataStatus();
     this.setState({ email: event.target.value });
   };
 
@@ -75,6 +63,12 @@ class FormsPage extends Component<{}, FormState> {
     console.log('Is Checked:', this.state.isChecked);
     console.log('Selected File:', this.state.selectedFile);
     this.setState({ isShowData: true });
+  };
+
+  checkShowDataStatus = () => {
+    if (this.state.isShowData) {
+      this.setState({ isShowData: false });
+    }
   };
 
   render() {
