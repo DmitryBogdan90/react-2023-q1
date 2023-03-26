@@ -1,0 +1,65 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 400px;
+  margin-top: 20px;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input[type='text'],
+input[type='date'],
+select {
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+input[type='email'] {
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  width: 300px;
+}
+
+input[type='checkbox'] {
+  margin-left: 10px;
+}
+
+button[type='submit'] {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form-content-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form-content {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.form-content div {
+  margin-top: 10px;
+}
