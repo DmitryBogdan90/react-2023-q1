@@ -12,7 +12,7 @@ interface FormState {
   selectedFile: File | null;
 }
 
-class FormsPage extends Component<{}, FormState> {
+class FormsPage extends Component<object, FormState> {
   state = {
     name: '',
     email: '',
