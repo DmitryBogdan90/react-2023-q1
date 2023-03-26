@@ -83,7 +83,6 @@ class FormsPage extends Component<{}, FormState> {
   };
 
   render() {
-    // const { formData, isShowData } = this.state;
 
     return (
       <div>
@@ -118,6 +117,7 @@ class FormsPage extends Component<{}, FormState> {
             </label>
             <br />
             <label>
+              Email:
               <input
                 type="email"
                 name="email"
@@ -137,13 +137,15 @@ class FormsPage extends Component<{}, FormState> {
         </div>
 
         {this.state.isShowData && (
-          <div className="form-content">
-            <div>Name: {this.state.name}</div>
-            <div>Date: {this.state.date}</div>
-            <div>Email: {this.state.email}</div>
-            <div>isChecked: {this.state.isChecked}</div>
-            <div>Option: {this.state.selectedOption}</div>
-            <div>File: {this.state.selectedFile?.toString()}</div>
+          <div className="form-content-wrapper">
+            <div className="form-content">
+              <div>Name: {this.state.name}</div>
+              <div>Date: {this.state.date}</div>
+              <div>Email: {this.state.email}</div>
+              <div>isChecked: {this.state.isChecked}</div>
+              <div>Option: {this.state.selectedOption}</div>
+              <div>File: {this.state.selectedFile?.toString()}</div>
+            </div>
           </div>
         )}
       </div>
