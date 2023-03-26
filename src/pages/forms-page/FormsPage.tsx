@@ -1,95 +1,149 @@
-import React, { Component, FormEvent } from 'react';
+import React, { Component } from 'react';
 
 import './FormsPage.css';
 
 interface FormState {
-  formData: FormData;
   isShowData: boolean;
+  name: string;
+  email: string;
+  date: string;
+  selectedOption: string;
+  isChecked: boolean;
+  selectedFile: File | null;
 }
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+interface Props {}
 
 class FormsPage extends Component<{}, FormState> {
-  state: FormState = {
-    formData: {
-      firstName: '',
-      lastName: '',
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      name: '',
       email: '',
-    },
-    isShowData: false,
+      date: '',
+      selectedOption: '',
+      isChecked: false,
+      selectedFile: null,
+      isShowData: false,
+    };
+  }
+
+  handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (this.state.isShowData) {
+      this.setState({ isShowData: false });
+    }
+    this.setState({ name: event.target.value });
   };
 
-  handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = event.target;
-    this.setState((prevState) => ({
-      formData: {
-        ...prevState.formData,
-        [name]: value,
-      },
-    }));
+  handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (this.state.isShowData) {
+      this.setState({ isShowData: false });
+    }
+    this.setState({ date: event.target.value });
   };
 
-  handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (this.state.isShowData) {
+      this.setState({ isShowData: false });
+    }
+    this.setState({ selectedOption: event.target.value });
+  };
+
+  handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (this.state.isShowData) {
+      this.setState({ isShowData: false });
+    }
+    this.setState({ isChecked: event.target.checked });
+  };
+
+  handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (this.state.isShowData) {
+      this.setState({ isShowData: false });
+    }
+    if (event.target.files !== null && event.target.files.length > 0) {
+      this.setState({ selectedFile: event.target.files[0] });
+    }
+  };
+
+  handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (this.state.isShowData) {
+      this.setState({ isShowData: false });
+    }
+    this.setState({ email: event.target.value });
+  };
+
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    this.setState(() => ({
-      isShowData: true,
-    }));
+    console.log('Name:', this.state.name);
+    console.log('Date:', this.state.date);
+    console.log('Selected Option:', this.state.selectedOption);
+    console.log('Is Checked:', this.state.isChecked);
+    console.log('Selected File:', this.state.selectedFile);
+    this.setState({ isShowData: true });
   };
 
   render() {
-    const { formData, isShowData } = this.state;
+    // const { formData, isShowData } = this.state;
 
     return (
       <div>
         <div className="form-wrapper">
           <form className="form" onSubmit={this.handleSubmit}>
-            <label className="form__input">
-              First Name:
+            <label>
+              Name:
+              <input type="text" value={this.state.name} onChange={this.handleNameChange} />
+            </label>
+            <br />
+            <label>
+              Date:
+              <input type="date" value={this.state.date} onChange={this.handleDateChange} />
+            </label>
+            <br />
+            <label>
+              Select:
+              <select value={this.state.selectedOption} onChange={this.handleOptionChange}>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select>
+            </label>
+            <br />
+            <label>
+              Checkbox:
               <input
-                type="text"
-                name="firstName"
-                required
-                value={formData.firstName}
-                onChange={this.handleInputChange}
+                type="checkbox"
+                checked={this.state.isChecked}
+                onChange={this.handleCheckboxChange}
               />
             </label>
-            <label className="form__input">
-              Last Name:
-              <input
-                type="text"
-                name="lastName"
-                required
-                value={formData.lastName}
-                onChange={this.handleInputChange}
-              />
-            </label>
-            <label className="form__input">
-              Email:
+            <br />
+            <label>
               <input
                 type="email"
                 name="email"
                 required
-                value={formData.email}
-                onChange={this.handleInputChange}
+                value={this.state.email}
+                onChange={this.handleEmailChange}
               />
             </label>
-            <div className="form__actions">
-              <button className="form__button" type="submit">
-                Submit
-              </button>
-            </div>
+            <br />
+            <label>
+              Upload Image:
+              <input type="file" accept="image/*" onChange={this.handleFileChange} />
+            </label>
+            <br />
+            <button type="submit">Submit</button>
           </form>
         </div>
 
-        {isShowData && (
+        {this.state.isShowData && (
           <div className="form-content">
-            <div>Firstname: {formData.firstName}</div>
-            <div>Lastname: {formData.lastName}</div>
-            <div>Email: {formData.email}</div>
+            <div>Name: {this.state.name}</div>
+            <div>Date: {this.state.date}</div>
+            <div>Email: {this.state.email}</div>
+            <div>isChecked: {this.state.isChecked}</div>
+            <div>Option: {this.state.selectedOption}</div>
+            <div>File: {this.state.selectedFile?.toString()}</div>
           </div>
         )}
       </div>
