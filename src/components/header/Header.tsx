@@ -26,6 +26,9 @@ class Header extends React.Component<HeaderProps> {
             <li>
               <Button link={PATH.ABOUT} text={PAGE.ABOUT}></Button>
             </li>
+            <li>
+              <Button link={PATH.FORMS} text={PAGE.FORMS}></Button>
+            </li>
           </ul>
         </nav>
       </div>
