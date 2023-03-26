@@ -12,21 +12,16 @@ interface FormState {
   selectedFile: File | null;
 }
 
-interface Props {}
-
 class FormsPage extends Component<{}, FormState> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      name: '',
-      email: '',
-      date: '',
-      selectedOption: '',
-      isChecked: false,
-      selectedFile: null,
-      isShowData: false,
-    };
-  }
+  state = {
+    name: '',
+    email: '',
+    date: 'not entered',
+    selectedOption: 'option1',
+    isChecked: false,
+    selectedFile: null,
+    isShowData: false,
+  };
 
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (this.state.isShowData) {
@@ -83,6 +78,7 @@ class FormsPage extends Component<{}, FormState> {
   };
 
   render() {
+    const { name, date, selectedOption, isChecked, email, isShowData } = this.state;
 
     return (
       <div>
@@ -90,30 +86,7 @@ class FormsPage extends Component<{}, FormState> {
           <form className="form" onSubmit={this.handleSubmit}>
             <label>
               Name:
-              <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-            </label>
-            <br />
-            <label>
-              Date:
-              <input type="date" value={this.state.date} onChange={this.handleDateChange} />
-            </label>
-            <br />
-            <label>
-              Select:
-              <select value={this.state.selectedOption} onChange={this.handleOptionChange}>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </select>
-            </label>
-            <br />
-            <label>
-              Checkbox:
-              <input
-                type="checkbox"
-                checked={this.state.isChecked}
-                onChange={this.handleCheckboxChange}
-              />
+              <input type="text" value={name} required onChange={this.handleNameChange} />
             </label>
             <br />
             <label>
@@ -122,9 +95,28 @@ class FormsPage extends Component<{}, FormState> {
                 type="email"
                 name="email"
                 required
-                value={this.state.email}
+                value={email}
                 onChange={this.handleEmailChange}
               />
+            </label>
+            <br />
+            <label>
+              Date:
+              <input type="date" value={date} onChange={this.handleDateChange} />
+            </label>
+            <br />
+            <label>
+              Select:
+              <select value={selectedOption} onChange={this.handleOptionChange}>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select>
+            </label>
+            <br />
+            <label>
+              Checkbox:
+              <input type="checkbox" checked={isChecked} onChange={this.handleCheckboxChange} />
             </label>
             <br />
             <label>
@@ -136,15 +128,14 @@ class FormsPage extends Component<{}, FormState> {
           </form>
         </div>
 
-        {this.state.isShowData && (
+        {isShowData && (
           <div className="form-content-wrapper">
             <div className="form-content">
-              <div>Name: {this.state.name}</div>
-              <div>Date: {this.state.date}</div>
-              <div>Email: {this.state.email}</div>
-              <div>isChecked: {this.state.isChecked}</div>
-              <div>Option: {this.state.selectedOption}</div>
-              <div>File: {this.state.selectedFile?.toString()}</div>
+              <div>Name: {name}</div>
+              <div>Date: {date}</div>
+              <div>Email: {email}</div>
+              <div>isChecked: {isChecked ? 'yes' : 'no'}</div>
+              <div>Option: {selectedOption}</div>
             </div>
           </div>
         )}
