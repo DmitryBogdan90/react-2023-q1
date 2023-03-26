@@ -1,8 +1,8 @@
 export const PATH = {
-  HOME: '/',
-  ABOUT: '/about',
-  NOT_FOUND: '*',
-  FORMS: '/forms',
+  HOME: '/react-2023-q1/',
+  ABOUT: '/react-2023-q1/about',
+  NOT_FOUND: '/react-2023-q1/*',
+  FORMS: '/react-2023-q1/forms',
 };
 
 export const PAGE = {
